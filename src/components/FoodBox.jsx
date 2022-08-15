@@ -11,7 +11,7 @@ export default function FoodBOx(props) {
                 <p>{food.calories}</p>
                 <p>{food.servings}</p>
                 <p><strong>Total Calories</strong>{totalCalories}kcal</p>
-                <button onClick={() => onDelete(food.name)}>Delete</button>
+                <button onClick={() => onDelete(food)}>Delete</button>
             </div>
         </div>
     )

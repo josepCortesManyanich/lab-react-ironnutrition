@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import './App.css';
+import AddFoodForm from './components/AddFoodForm';
 import FoodBox from './components/FoodBox';
+import SearchBar from './components/SearchBar';
 import foodData from './foods.json';
 
 function App() {
@@ -11,9 +13,34 @@ function App() {
     setFoods(deletedFood)
   }
 
+  const handleCreateFood = (food) => {
+    const newFood = [...foods]
+     newFood.push(food)
+     setFoods(newFood)
+  }
+
+  const handleSearchFood = (searchedFood) => {
+    if(searchedFood === ''){
+      setFoods(foodData)
+    } else{
+      const searched = foods.filter (elem => elem.name.toLowerCase().includes((searchedFood).toLowerCase()))
+      setFoods (searched)
+    }
+  }
+
 
   return (
     <div className='food'>
+      
+        <SearchBar onSearch={handleSearchFood}/>
+      
+
+      <div>
+         <AddFoodForm createdFood={handleCreateFood} />
+      </div> 
+        
+        
+        
         <div>
             {foods.map(elem => {
               return (
